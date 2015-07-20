@@ -1,0 +1,143 @@
+<div id="main">
+<header id="header" ng-controller="mainCtrl">      
+  <div id="logo" class="left">
+    <h1>wanna ride </h1>
+  </div>
+
+      <nav id="menu" class="left">
+        <a class="active" ng-href="#/dashboard/{{user.firstname}}/{{user.lastname}}">Dashboard</a>
+        <a href="#/map">Map</a>
+        <a href="#/defis">Défis</a>
+      </nav>  
+
+
+      <div id="setting" class="right">
+
+        <div id="searchProfil" class="left" ng-controller="searchCtrl">
+          <form ng-submit="searchSubmit()">
+              <input type="text" id="text" name="text" ng-model="search.text" placeholder="Recherche...">
+          </form>
+        </div>
+
+        <div id="profil" class="left">
+            <img class="user left" ng-src="http://08ede76110.url-de-test.ws/{{user.profil_photo}}" alt="">
+            <p>{{user.firstname | capitalize}}</p>
+        </div>
+
+        <div id="panel" class="left">
+
+          <span id="add" class="add left" ng-click="logout();"></span>
+
+          <div id="showSetting" class="right">
+            <span class="panelSetting a-2">\</span>
+            <span class="panelSetting a-3">-</span>
+            <span class="panelSetting a-4">?</span>
+          </div>
+
+          <div class="clear"></div>
+        </div>
+
+      </div>
+
+  <div class="clear"></div>
+</header>
+ <div class="main">
+    <div class="main-left">
+      <div class="main-container">
+        Nothing new for you my friend :(
+      </div>
+    </div>
+    <div class="main-right">
+      <div id="info-user">
+        <div id="head-user">
+          <div id="picture">
+            <img src="http://08ede76110.url-de-test.ws/{{oneUser.profil_photo}}" alt="hey" width="160" height="160" id="profile-picture"/>
+          </div>
+          <div id="about-user" ng-spot>
+            <h1>{{oneUser.firstname}}<br/><span class="family-name">{{oneUser.lastname}}<span></h1>
+            <button class="button buttonFollowed">Éditer</button>
+          </div>
+        </div>
+        
+        <div id="more-info-user">
+          <div class="stats-user">
+            <div id="friends-added"><h3><span id="#nbre-follower">{{oneUser.nb_followers}}</span><br/>Followers</h3></div>
+            <div id="spot-added"><h3><span id="#nbre-picture">12</span><br/>Spots créés</h3></div>
+          </div>
+        </div>
+        <div id="bio-user">
+            <table>
+               <tr>
+                   <td><img src="img/city.svg" alt="Ville" width="16px" height="16px" /></td>
+                   <td>{{oneUser.city}}</td>
+               </tr>
+               <tr>
+                   <td><img src="img/sport.svg" alt="Sport" width="16px" height="16px" /></td>
+                   <td>{{$scope.user.sports}}</td>
+               </tr>
+            </table>
+
+            <p>{{oneUser.biography}}</p>
+          </div>
+      </div>
+    </div>
+    <div class="modal-form">
+  <div class="mod-head">
+    <div ng-close id="close">×</div>
+    <h2>Editer mes infos</h2>
+  </div>
+  <div class="mod-body">
+    <form>
+      <div id="left-part">
+        <label for="user-name">
+          Prénom<br/>
+          <input type="text" id="user-name" name="firstname" ng-value="{{oneUser.firstname}}" ng-model="user.firstname"  tabindex="1" required/>
+        </label>
+        <label for="user-city">
+          Ville<br/>
+          <input type="text" id="user-city" name="city" ng-value="{{oneUser.city}}" ng-model="user.city" tabindex="3" required/>
+        </label>
+       </div>
+      <div id="right-part">
+        <label for="user-fam-name">
+          Nom<br/>
+          <input type="text" id="user-fam-name" name="lastname" ng-value="{{oneUser.lastname}}" ng-model="user.lastname" tabindex="2" required/>
+        </label>
+      </div>
+      <label for="user-sport" id="user-sport">
+          Sport<br/>
+        <div>
+        <span ng-repeat="sport in sports">
+          <input ng-show="!sport.isCheck" ng-click="check(sport.id, $index)" type="checkbox" name="{{sport.name | lowercase}}" id="{{sport.name | lowercase}}" tabindex="5"/>
+          <input ng-show="sport.isCheck" checked ng-click="check(sport.id, $index)" type="checkbox" name="{{sport.name | lowercase}}" id="{{sport.name | lowercase}}" tabindex="5"/>
+        </span>
+        </div>
+      </label>
+      <label for="user-bio">
+          Biographie<br/>
+          <textarea name="biography" id="user-bio" tabindex="13" value="{{oneUser.biography}}" id="biography" ng-model="user.biography" required></textarea>
+      </label>
+      <div id="uploadMedia">
+
+  		<span id="photo" ng-file-drop ng-file-select ng-model="files" class="photoUp" drag-over-class="dragover" ng-multiple="false" 
+  		allow-dir="true" ng-accept="'.jpg,.png'" >
+
+	    <p ng-bind-html="photo"></p>
+	    <img class="dropIcon" src="img/dropIcon.png" alt="">
+	    <p class="upText">Une photo</p>
+
+    	</span>
+
+	  </div>
+
+	  <div class="mod-button">
+	    <button id="reset-button" tabindex="14" ng-close >Annuler</button>
+	    <button id="validate-button" tabindex="15" ng-click="updateInfo();">Valider</button>
+	  </div>
+
+    </form>
+  </div>
+</div>
+  </div>
+</div>
+

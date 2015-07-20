@@ -1,0 +1,96 @@
+<div id="main">
+<header id="header" ng-controller="mainCtrl">      
+  <div id="logo" class="left">
+    <h1>wanna ride </h1>
+  </div>
+
+      <nav id="menu" class="left">
+        <a ng-href="#/dashboard/{{user.firstname}}/{{user.lastname}}">Dashboard</a>
+        <a href="#/map">Map</a>
+        <a href="#/defis">Défis</a>
+      </nav>  
+
+
+      <div id="setting" class="right">
+
+        <div id="searchProfil" class="left" ng-controller="searchCtrl">
+          <form ng-submit="searchSubmit()">
+              <input type="text" id="text" name="text" ng-model="search.text" placeholder="Recherche...">
+          </form>
+        </div>
+
+        <div id="profil" class="left">
+            <img class="user left" ng-src="http://08ede76110.url-de-test.ws/{{user.profil_photo}}" alt="">
+            <p>{{user.firstname | capitalize}}</p>
+        </div>
+
+        <div id="panel" class="left">
+
+          <span id="add" class="add left" ng-click="logout();"></span>
+
+          <div id="showSetting" class="right">
+            <span class="panelSetting a-2">\</span>
+            <span class="panelSetting a-3">-</span>
+            <span class="panelSetting a-4">?</span>
+          </div>
+
+          <div class="clear"></div>
+        </div>
+
+      </div>
+
+  <div class="clear"></div>
+</header>
+ <div class="main">
+    <div class="main-left">
+      <div class="main-container">
+        Nothing new for you my friend :(
+      </div>
+    </div>
+    <div class="main-right">
+      <div id="info-user">
+        <div id="head-user">
+          <div id="picture">
+            <img src="http://08ede76110.url-de-test.ws/{{oneUser.profil_photo}}" alt="hey" width="160" height="160" id="profile-picture"/>
+          </div>
+          <div id="about-user" ng-spot>
+            <h1>{{oneUser.firstname}}<br/><span class="family-name">{{oneUser.lastname}}<span></h1>
+            <button ng-show="!isFollow" ng-click="follow(oneUser.id);" type="button" class="button buttonFollowed">
+				follow
+				<div class="raisedButton"></div>
+			</button>
+
+			<button ng-show="isFollow" ng-click="follow(oneUser.id);" type="button" class="button buttonUnfollow">
+				unfollow
+				<div class="raisedButton"></div>
+			</button>
+          </div>
+        </div>
+        
+        <div id="more-info-user">
+          <div class="stats-user">
+            <div id="friends-added"><h3><span id="#nbre-follower">{{oneUser.nb_followers}}</span><br/>Followers</h3></div>
+            <div id="spot-added"><h3><span id="#nbre-picture">12</span><br/>Spots créés</h3></div>
+          </div>
+        </div>
+        <div id="bio-user">
+            <table>
+               <tr>
+                   <td><img src="img/city.svg" alt="Ville" width="16px" height="16px" /></td>
+                   <td>{{oneUser.city}}</td>
+               </tr>
+               <tr>
+                   <td><img src="img/sport.svg" alt="Sport" width="16px" height="16px" /></td>
+                   <td>{{$scope.user.sports}}</td>
+               </tr>
+            </table>
+
+            <p>{{oneUser.biography}}</p>
+          </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+	  		
+									

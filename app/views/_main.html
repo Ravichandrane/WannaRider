@@ -1,0 +1,171 @@
+<div id="main" ng-spot>
+
+  <header id="header">      
+      <div id="logo" class="left">
+        <h1>wanna ride </h1>
+      </div>
+      
+      <nav id="menu" class="left">
+        <a ng-href="#/dashboard/{{user.firstname}}/{{user.lastname}}">Dashboard</a>
+        <a href="" class="active">Map</a>
+        <a href="#/defis">Défis</a>
+      </nav>
+      
+
+      <div id="setting" class="right">
+
+        <div id="searchProfil" class="left" ng-controller="searchCtrl">
+          <form ng-submit="searchSubmit()">
+              <input type="text" id="text" name="text" ng-model="search.text" placeholder="Recherche...">
+          </form>
+        </div>
+
+        <div id="profil" class="left">
+            <img class="user left" ng-src="http://08ede76110.url-de-test.ws/{{user.profil_photo}}" alt="">
+            <p>{{user.firstname | capitalize}}</p>
+        </div>
+
+        <div id="panel" class="left">
+          
+          <span id="add" class="add left" ng-click="logout();"></span>
+
+          <div id="showSetting" class="right">
+            <span class="panelSetting a-2">\</span>
+            <span class="panelSetting a-3">-</span>
+            <span class="panelSetting a-4">?</span>
+          </div>
+
+          <div class="clear"></div>
+        </div>
+        
+      </div>
+
+      <div class="clear"></div>
+  </header>
+  
+  <div id="map" ng-map></div>
+  
+  <div id="search">
+    <span  id="geo" class="geo"></span>
+    <input id="pac-input" name="spot" class="controls" type="text" placeholder="Rechercher...">
+    <span  id="sub" class="submit"></span>
+  </div>
+
+  <div id="addSpot" ng-controller="spotCtrl">
+    <div class="button buttonAddSpot">cliquez sur le map pour ajouter un spot</div>
+    <div id="addSpotContent">
+      
+      <div id="infoSpot">
+        <div id="backFav">
+          <span class="back left"></span>
+          <div  class="clear"></div>
+        </div>
+        
+        <div id="formAdd" class="right">   
+              
+            <div class="wrap">
+              
+              <form action="">
+                
+                <div class="input-field select-style">
+                  
+                  <select name="category" id="category" ng-model="addSpot.categories_id">
+                    <option value="">Type de post</option>
+                    <option ng-repeat="category in categories" ng-value="{{category.id}}">{{category.name | capitalize}}</option>
+                  </select>
+
+                </div>
+
+                <div class="input-field">
+                  <label for="title" >nom du spot</label>  
+                  <input type="text"   name="title"        ng-model="addSpot.title"           input required>
+                  <input type="hidden" name="latitude"     ng-model="$rootScope.latitude"     input>
+                  <input type="hidden" name="longitude"    ng-model="$rootScope.longitude"    input>
+                </div> 
+
+              </form>
+      
+            </div>
+            
+          </div>
+
+      </div>
+
+      <div id="uploadMedia" ng-controller="DropCtrl">
+
+          <span id="photo" ng-file-drop ng-file-select ng-model="files" class="photoUp" drag-over-class="dragover" ng-multiple="true" allow-dir="true" ng-accept="'.jpg,.png'" >
+            <p ng-bind-html="photo"></p>
+            <img class="dropIcon" src="img/dropIcon.png" alt="">
+            <p class="upText">photo(s)</p>
+
+              <span ng-show="files.length > 0" ng-repeat="f in files">
+                  <span class="progress" ng-show="f.progress >= 0">           
+                    <span style="width:{{f.progress}}%">{{f.progress}}%</span>
+                  </span>         
+              </span>
+
+            </span>
+
+          <span id="video" ng-file-drop ng-file-select ng-model="files" class="videoUp" drag-over-class="dragover" ng-multiple="true" allow-dir="true" ng-accept="'video/mp4,video/x-m4v,video/*'">
+            <p ng-bind-html="video"></p>
+            <img class="dropIcon" src="img/dropIcon.png" alt="">
+            <p class="upText">video(s)</p>
+          </span>
+
+      </div>
+    
+      
+      <div class="button buttonSession" ng-click="submitSpot();">
+        valider !
+      </div>
+
+    </div>
+  </div>  
+  
+  <div id="spot" ng-controller="spotMediaCtrl">
+    <div id="showSpot">
+      <div id="showSpotContent">
+    
+        <div id="infoSpot">
+            <div id="backFav">
+              <span class="back left"></span>
+              <span ng-show="!isCheck" ng-click="favSpot()" class="fav right"></span> 
+              <span ng-show="isCheck"  ng-click="favSpot()" class="fav active right"></span> 
+
+              <div  class="clear"></div>
+            </div>
+            <span id="title"></span>
+        </div>
+
+        <div id="infoMedia" ng-click="showMedia();"></div>
+        
+        <div id="weather"></div>
+
+        <div id="infoSun"></div>      
+        
+        <div class="button buttonSession">
+          organier une session
+        </div>
+
+      </div>
+        
+    </div>
+
+    <div id="mediaSpot">
+      <div class="mod-head" ng-controller="spotCtrl">
+        <h2>Photos &amp; Video du spot : {{spotData.title}}</h2>
+      </div>
+      
+      <div class="mod-body">
+        <img ng-repeat="spotMedia in spotMedias" ng-src="http://08ede76110.url-de-test.ws/{{spotMedia.src}}">
+      </div>   
+      
+      <div class="mod-button" ng-close>
+        <button>fermer</button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

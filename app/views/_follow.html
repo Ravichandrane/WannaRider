@@ -1,0 +1,44 @@
+<div id="choice">
+	<header id="header">
+		<div class="grid">
+			<h1 class="left">wanna ride</h1>
+			<div class="clear"></div>
+		</div>
+	</header>
+	<div id="topTitle">
+		<div class="grid">
+			<h2>Commencez à suivre des riders !</h2>
+			<span class="smallTitle">Suivez les personnes qui partagent vos sports.</span>
+		</div>
+	</div>
+
+	<div id="choiceFollowers">
+		<div class="grid">
+			<div id="followers">
+				
+				<div ng-repeat="follower in followers" class="follower left">
+					<div class="avatarFollower">
+						<img ng-src="http://08ede76110.url-de-test.ws/{{follower.profil_photo}}" alt="">
+					</div>
+					<span class="followerName">{{follower.firstname}} {{follower.lastname}}</span>
+					
+
+					<button ng-show="!follower.isFollow" ng-click="follow(follower.id, $index);" type="button" class="button buttonFollowed">
+			  			follow
+			  		</button>
+
+					<button ng-show="follower.isFollow" ng-click="follow(follower.id, $index);" type="button" class="button buttonUnfollow">
+			  			unfollow
+			  		</button>			  		
+			  		
+
+				</div>															
+
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+	<ng-progress></ng-progress>
+
+</div>

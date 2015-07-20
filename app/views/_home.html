@@ -1,0 +1,97 @@
+<div id="home" ng-controller="authCtrl">
+
+	<header id="header" >
+		<div class="grid">
+			<h1 class="left">wanna ride</h1>
+			
+			<form class="right" name="login">
+				<div class="input-field" >
+					<label for="mail" >E-mail</label>
+					<input type="email" id="mail" name="mail" ng-model="loginForm.mail" input required>
+				</div>
+				<div class="input-field">
+					<label for="password" >Mot de passe</label>
+					<input type="password" id="password" name="password" ng-model="loginForm.password" input required>
+				</div>				
+			  	<button type="submit" class="button buttonWhite">
+			  		connexion
+			    	<div class="raisedButton" ng-click="signin()">
+			    		<span class="raisedCircle"></span>
+			    	</div>
+			  	</button>			
+			</form>
+			<div class="clear"></div>
+		</div>
+	</header>
+
+	<div class="grid">
+		<div id="description" class="left">
+			<h1>wanna ride</h1>	
+			<p>
+				Rejoignez Wanna Ride pour défier et suivre l’actualité de la communauté de riders. 
+				Trouvez tous les spots proches de chez vous et invitez des amis à s’entrainer avec vous.
+			</p>
+			<span class="more">découvrir plus</span>
+		</div>
+
+		<div id="form" class="right">		
+			<h1>rejoins la communauté !</h1>
+			<div class="wrap">
+				
+				<form name="register">
+					<div id="info">
+						<div class="input-field">
+							<label for="lastname" >Nom</label>
+							<input type="text" id="lastname" name="lastname" ng-model="registerForm.lastname" input required>
+						</div>		
+						
+						<div class="input-field">
+							<label for="firstname" >Prénom</label>
+							<input type="text" id="firstname" name="firstname" ng-model="registerForm.firstname" input required>
+						</div>	
+					</div>
+
+					<div class="input-field">
+						<label for="mail" >Adresse mail</label>
+						<input type="email" id="mail" name="mail" ng-model="registerForm.mail" input required>
+					</div>
+					<div class="input-field">
+						<label for="password" >Mot de passe</label>
+						<input type="password" id="password" name="password" ng-model="registerForm.password" input required>
+					</div>	
+					<div class="input-field">
+						<label for="confirmepass" >Confirmation mot de passe</label>
+						<input type="password" id="confirmepass" name="confirmepass" ng-model="registerForm.confirmepass" input required>
+					</div>	
+					
+					<input type="hidden"   id="token_signup" name="token_signup" ng-model="registerForm.token_signup" input required>
+				  	
+				  	<button type="submit" class="button buttonWhite">
+				  		let's go ride
+				    	<div class="raisedButton" ng-click="signup()" >
+				    		<span class="raisedCircle"></span>
+				    	</div>
+				  	</button>
+				</form>
+			</div>
+		</div>
+
+	    <div id="mediaSpot">
+	      <div class="mod-head">
+	        <h2>{{titleError}}</h2>
+	      </div>
+	      
+	      <div class="mod-body">
+	        <p>{{erromsg.message}}</p>
+	      </div>   
+	      
+	      <div class="mod-button" ng-close>
+	        <button >fermer</button>
+	      </div>
+
+	    </div>		
+
+		<div class="clear"></div>
+	</div>
+</div>
+

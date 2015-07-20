@@ -1,0 +1,77 @@
+<div id="research">
+  	
+  	<header id="header" ng-controller="mainCtrl">      
+      <div id="logo" class="left">
+        <h1>wanna ride </h1>
+      </div>
+      
+      <nav id="menu" class="left">
+        <a ng-href="#/dashboard/{{user.firstname}}/{{user.lastname}}">Dashboard</a>
+        <a href="#/map">Map</a>
+        <a href="#/defis">Défis</a>
+      </nav>
+      
+
+      <div id="setting" class="right">
+
+        <div id="searchProfil" class="left" ng-controller="searchCtrl">
+          <form ng-submit="searchSubmit()">
+              <input type="text" id="text" name="text" ng-model="search.text" placeholder="Recherche...">
+          </form>
+        </div>
+
+        <div id="profil" class="left">
+            <img class="user left" ng-src="http://08ede76110.url-de-test.ws/{{user.profil_photo}}" alt="">
+            <p>{{user.firstname | capitalize}}</p>
+        </div>
+
+        <div id="panel" class="left">
+          
+          <span id="add" class="add left" ng-click="logout();"></span>
+
+          <div id="showSetting" class="right">
+            <span class="panelSetting a-2">\</span>
+            <span class="panelSetting a-3">-</span>
+            <span class="panelSetting a-4">?</span>
+          </div>
+
+          <div class="clear"></div>
+        </div>
+        
+      </div>
+
+      <div class="clear"></div>
+ 	</header>
+	
+	<div id="topTitle">
+		<div class="grid">
+			<h2>Recherche riders</h2>
+			<span class="smallTitle">{{infos.length}} utilisateur(s) trouvé(s)</span>
+		</div>
+	</div>
+
+	<div class="grid">
+		<div id="followers">
+			<div ng-repeat="info in infos" class="follower left">
+				
+				<a ng-href="#/users/{{info.firstname}}/{{info.lastname}}/{{info.id}}">
+					<div class="avatarFollower">
+						<img ng-src="http://08ede76110.url-de-test.ws/{{info.profil_photo}}" alt="">
+					</div>
+					<span class="followerName">{{info.firstname}} {{info.lastname}}</span>
+				</a>			  		
+				
+			</div>															
+
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+
+
