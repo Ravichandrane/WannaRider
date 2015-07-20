@@ -28,7 +28,7 @@ Project created by :
 
 ## To start front project
 
-Go to link here or clone and write command line on Front directory:
+Clone and write command line :
 
 ```
     $ npm install
